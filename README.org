@@ -1,0 +1,32 @@
+* Links/Notes
++ [[https://flask.palletsprojects.com/en/1.1.x/quickstart/][Flask Quickstart]] 
++ [[https://jinja.palletsprojects.com/en/2.11.x/templates/][Jinja Templates]]
++ [[https://github.com/benhg/femtoblog/tree/master/project][Femtoblog]]
++ [[https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates][Mega Flask tutorials]]
+  
+* Todos
+
+* Code Plan
+** Calculations
+*** Needed Data
+**** Optimization
++ Maximize for time
++ Aim for specific time of day
+**** Bread details
+1. Type
+2. Dough mixing time
+3. 1st rise range & optimum
+4. Action time (ex kneading the dough/braiding)
+5. 2nd rise range & optimum
+6. Time to preheat oven
+7. Time to bake
+8. Time to cool before eating
+**** Assumptions
++ Two rises
++ Aim for specific time of day
++ Prioritize medium-length first rise and correct length second rise
+** Calculation Order
+1) Find minimum start time
+2) Begin adding up bread time backwards from bread cooling (using ideal time)
+3) Calculate time to begin based on first calculation
+   - if time is before minimum start time, redo calculations but using the range options (so subtract say half the allotted range)
