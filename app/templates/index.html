@@ -1,9 +1,74 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action = "/output">
-    <p>Submit your name:</p>
-    <p><input name="name" type="text"></p>
-    <p><input type="submit" value="submit"></p>
+
+<center><h2>&#x1F35E; Bread Sched &#x1F4C5;</h2></center>
+
+<form action = "/" method="post">
+
+    <div class="container">
+        <div class="form-group">
+            <!-- <input name="bread_name" type="text" placeholder="Bread name"><br>
+            -->
+            <div class="row">
+                <div class="col-2">
+                    <label for="mixtime">Mixtime:</label>
+                    <input name="mixtime" class="form-control" id="mixtime" type="number" value="Mix time">
+                </div>
+
+                <div class="col-2">
+                    <label for="first_rise">First rise:</label>
+                    <input name="first_rise" class="form-control" id="first_rise" type="number" value="">
+                </div>
+
+                <div class="col-2">
+                    <label for="first_rise_range">First rise range:</label>
+                    <input name="first_rise_range" class="form-control" id="first_rise_range" type="number" value="">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label for="Second rise">Second rise:</label>
+                    <input name="second_rise" class="form-control" id="second_rise" type="number" value=""><br>
+                </div>
+
+                <div class="col-2">
+                    <label for="second_rise_range">Second rise range:</label>
+                    <input name="second_rise_range" class="form-control" id="second_rise_range" type="number" value=""><br>
+                </div>
+
+                <div class="col-2">
+                    <label for="action_time">Action time:</label>
+                    <input name="action_time" class="form-control" id="action_time" type="number" value=""><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <label for="bake_time">Bake time:</label>
+                    <input name="bake_time" class="form-control" id="bake_time" type="number" value=""><br>
+                </div>
+
+                <div class="col-3">
+                    <label for="cool_time">Cool time:</label>
+                    <input name="cool_time" class="form-control" id="cool_time" type="number" value=""><br>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-2">
+                    <label for="target_time">Target time:</label>
+                    <input name="target_time" class="form-control" type="time"><br>
+                </div>
+                <div class="col-2">
+                    <label for="minimum_start_time">Minimum start time:</label>
+                    <input name="minimum_start_time" class="form-control" type="time"><br>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
 </form>
 {% endblock %}
