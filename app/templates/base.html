@@ -9,13 +9,42 @@
 
         <style>
 
-            {% block style %}
-            {% endblock %}
+         body {
+             margin-top: 2rem;
+             padding-top: 8rem;
+             /* padding: 3rem; */
+             text-align: center;
+         }
+
+         input {
+             text-align: center;
+         }
+
+
+         {% block style %}
+         {% endblock %}
         </style>
 
         <title>Breadsched</title>
     </head>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/">&#x1F35E;&#x1F4C5;</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/output">Output</a>
+                <a class="nav-item nav-link disabled" href="#">Extra</a>
+                <a class="nav-item nav-link disabled" href="#">Extra</a>
+            </div>
+        </div>
+    </nav>
+
     <body>
+
         {% block body %}
         {% endblock %}
     </body>

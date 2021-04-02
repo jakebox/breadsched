@@ -1,10 +1,15 @@
-* Links/Notes
-+ [[https://flask.palletsprojects.com/en/1.1.x/quickstart/][Flask Quickstart]] 
-+ [[https://jinja.palletsprojects.com/en/2.11.x/templates/][Jinja Templates]]
-+ [[https://github.com/benhg/femtoblog/tree/master/project][Femtoblog]]
-+ [[https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates][Mega Flask tutorials]]
-  
+#+TITLE: BreadSched
+A website/app to help you time your bread correctly.
+
 * Todos
++ Make the actual schedule 
+  * Work backwards time to make schedule of actions
++ Optimize rendering output.html (maybe make a dictionary instead of a )
+** Long-term
++ Fix time adjustment calculations
+  * Not a good system currently, maybe find some formula to do it, not sure
++ Add submit checking (make sure all boxes are filled out before allowing submit button)
++ Make index.html work better on small width
 
 * Code Plan
 ** Calculations
@@ -27,6 +32,26 @@
 + Prioritize medium-length first rise and correct length second rise
 ** Calculation Order
 1) Find minimum start time
-2) Begin adding up bread time backwards from bread cooling (using ideal time)
+2) Add up all bread times with ideal times
 3) Calculate time to begin based on first calculation
    - if time is before minimum start time, redo calculations but using the range options (so subtract say half the allotted range)
+
+* Links/Notes
++ [[https://flask.palletsprojects.com/en/1.1.x/quickstart/][Flask Quickstart]] 
++ [[https://jinja.palletsprojects.com/en/2.11.x/templates/][Jinja Templates]]
++ [[https://github.com/benhg/femtoblog/tree/master/project][Femtoblog]]
++ [[https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates][Mega Flask tutorials]]
+** HTML/CSS
++ https://getbootstrap.com/docs/4.3/getting-started/introduction/
++ https://getbootstrap.com/docs/4.1/components/forms/
++ https://getbootstrap.com/docs/4.0/utilities/spacing/
++ https://getbootstrap.com/docs/4.0/layout/grid/
++ https://getbootstrap.com/docs/4.0/components/navbar/
++ https://getbootstrap.com/docs/4.0/examples/starter-template/
++ https://getbootstrap.com/docs/4.0/utilities/flex/
+** Flask
++ https://stackoverflow.com/questions/7478366/create-dynamic-urls-in-flask-with-url-for
++ https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
++ https://www.reddit.com/r/flask/comments/gjfzdc/redirect_vs_render_template/
+** Misc
++ https://flowingdata.com/2020/05/12/bread-scheduler/ - sourdough feeding chart that looks nice, maybe future inspiration

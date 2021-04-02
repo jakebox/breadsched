@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
 {% block body %}
-    Error! Something went wrong.
+    <div class="container">
+        <h4 class="display-4">Error! Something went wrong.</h4>
+        <p class="lead">
+            <strong><p class="text-danger">Error reason:</p> </strong> {{ error_reason }}
+        </p>
+    </div>
 {% endblock %}

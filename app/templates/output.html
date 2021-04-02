@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
-    Hello, {{ user }}! <br>
 
-    It looks like you are making {{ bread }}.
+    <main role="main" class="container">
+
+        <h1>{{ bread_kind }} Bread Sched</h1>
+
+        <p class="lead">Here is your automagically generated &#x1F35E;&#x1F4C5;!<br></p>
+
+        It looks like you are making {{ bread_kind }}.
+        To have it ready by {{ time_target }} like you wanted, the latest you could start making your bread is {{ latest_possible_start }}.<br>
+        Start to finish, it will take a total time of {{ total_rise_time }} hours, according to the information you inputted.
+    </main>
+
 {% endblock %}
