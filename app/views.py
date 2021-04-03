@@ -26,10 +26,11 @@ def index():
 
       bread.calculate_time(False)
       latest_possible_start = bread.calc_lps()
+      bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
 
       # return redirect("/output") # Send to output page
       # return redirect(url_for('output', user=user_name))
-      return render_template("output.html", user="Jake", time_target=twentyfour_to_twelve(target_time), latest_possible_start=twentyfour_to_twelve(latest_possible_start), bread_kind=bread.bread_kind, total_rise_time=int(bread.total_rise_time/60 * 100) / 100)
+      return render_template("output.html", user="Jake", bread_object=bread, time_target=twentyfour_to_twelve(target_time), latest_possible_start=twentyfour_to_twelve(latest_possible_start), bread_kind=bread.bread_kind, total_rise_time=int(bread.total_rise_time/60 * 100) / 100)
 
 @app.route("/output")
 def output():

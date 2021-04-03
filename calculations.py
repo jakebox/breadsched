@@ -12,8 +12,8 @@ class Bread():
 
         # Dict of times
         self.times = {"mixing_time": mixtime, "rise0": rise0,
-                      "rise1": rise1, "action_time": action_time,
-                      "bake_time": bake_time, "cool_time": cool_time}
+                      "action_time": action_time, "rise1": rise1, "bake_time": bake_time,
+                      "cool_time": cool_time}
 
         # Dict for the two time ranges
         self.time_ranges = {"rise0_range": rise0_range, "rise1_range": rise1_range}
@@ -45,7 +45,7 @@ class Bread():
         self.available_baking_time = datetime_obj.seconds / 60 # Available baking time in hours
 
 
-    def calculate_time(self, rerun_shorter):
+    def calculate_time(self, rerun_shorter=False):
     # Total process time comes out in minutes
         if not rerun_shorter:
             for time in self.times.values():
@@ -90,6 +90,23 @@ class Bread():
         dp = str(latest_possible_start)[:-3] # Return the time but without the seconds bit (so just HH:MM)
         return dp
 
+    def calculate_schedule(self, hours, minutes):
+        # Takes in a starting time as hours and minutes (24-hour) and
+        # loops thru each time amount, setting the time in a dict along the way
+        start_time = timedelta(hours=int(hours), minutes=int(minutes))
+        current_time = start_time
+        self.schedule = self.times.copy() # Make a copy of the timetable to refer to and to store the schedule
+        self.schedule = {key:val for key, val in self.schedule.items() if val != 0} # Remove items that take no time (val=0)
+        self.schedule['eat'] = 0 # So eating is on the schedule after cooling
+
+        for key, time in self.schedule.items():
+            # Set the value of the key to a 12-hour string version (i.e 12:50 PM) of the 'current'
+            # time, which is the time the event should begin, then increment the counter by the amount of timedelta
+            # that was used. I think this only works because there is a copy being made somewhere but I'm not sure.
+            self.schedule[key] = twentyfour_to_twelve(str(current_time)[:-3])
+            current_time += timedelta(minutes=time)
+        
+
 
 def twentyfour_to_twelve(time):
     # Convert a 24-hour string to a 12-hour string + AM/PM
@@ -114,10 +131,17 @@ if __name__ == '__main__':
 
     bread = Bread(time_target, minimum_start_time, "Challah", mixtime, first_rise, first_rise_range, second_rise, second_rise_range, action_time, bake_time, cool_time)
 
-    bread.calculate_time(False)
+    bread.calculate_time()
+
     latest_possible_start = bread.calc_lps()
+
+    bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5]) # Could be done using any times - so if you don't have a target time but you do have a start time this could be used
 
     print("\nAvailable baking time:", bread.available_baking_time, "| Total process time:", bread.total_rise_time)
     print("Original first rise:", first_rise, "| Adjusted first rise:", bread.times.get('rise0'))
     print("Original 2nd rise:", second_rise, "| Adjusted first rise:", bread.times.get('rise1'))
     print("\nYour", bread.bread_kind, "will take", bread.total_rise_time, "minutes total, equal to", "{:.2f}".format((bread.total_rise_time/60)), "hours. The latest you could possibly start at to make it on time for", twentyfour_to_twelve(bread.time_target_full), "is", twentyfour_to_twelve(latest_possible_start))
+    print("\nSCHEDULE:")
+    for key, value in bread.schedule.items():
+        print(key.capitalize() + ":", value)
+        
