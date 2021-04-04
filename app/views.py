@@ -24,13 +24,21 @@ def index():
 
       bread = Bread(target_time, minimum_start_time, bread_kind, mixtime, first_rise, first_rise_range, second_rise, second_rise_range, action_time, bake_time, cool_time)
 
-      bread.calculate_time(False)
-      latest_possible_start = bread.calc_lps()
-      bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
+      try:
+         bread.calculate_time()
+      except ValueError:
+         # display error message if necessary e.g. print str(e)
+         print("Failed, error out.")
+         return render_template("error.html", error_reason="Not enough time to make your bread!")
+      else:
+         print("Original first rise:", first_rise, "| Adjusted first rise:", bread.times.get('rise0'))
 
-      # return redirect("/output") # Send to output page
-      # return redirect(url_for('output', user=user_name))
-      return render_template("output.html", user="Jake", bread_object=bread, time_target=twentyfour_to_twelve(target_time), latest_possible_start=twentyfour_to_twelve(latest_possible_start), bread_kind=bread.bread_kind, total_rise_time=int(bread.total_rise_time/60 * 100) / 100)
+         latest_possible_start = bread.calc_lps()
+         # Could be done using any times - so if you don't have a target time but you do have a start time this could be used
+         bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
+         # return redirect("/output") # Send to output page
+         # return redirect(url_for('output', user=user_name))
+         return render_template("output.html", user="Jake", bread_object=bread, time_target=twentyfour_to_twelve(target_time), latest_possible_start=twentyfour_to_twelve(latest_possible_start), bread_kind=bread.bread_kind, total_rise_time=int(bread.total_rise_time/60 * 100) / 100)
 
 @app.route("/output")
 def output():

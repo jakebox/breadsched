@@ -2,33 +2,69 @@
 
 {% block body %}
 
-    <main role="main" class="container">
+<main role="main" class="container">
 
-        <h1>{{ bread_kind }} Bread Sched</h1>
+    <h1>{{ bread_kind }} Bread Sched</h1>
 
-        <p class="lead">Here is your automagically generated &#x1F35E;&#x1F4C5;!<br></p>
+    <p class="lead">Here is your automagically generated &#x1F35E;&#x1F4C5;!<br></p>
 
-        <p>It looks like you are making {{ bread_kind }}.
-            To have it ready by {{ time_target }} like you wanted, the latest you could start making your bread is {{ latest_possible_start }}.<br>
-            Start to finish, it will take a total time of {{ total_rise_time }} hours, according to the information you inputted.</p>
+    <p>It looks like you are making {{ bread_kind }}.
+        To have it ready by {{ time_target }} like you wanted, the latest you could start making your bread is {{ latest_possible_start }}.<br>
+        Start to finish, it will take a total time of {{ total_rise_time }} hours, according to the information you inputted.</p>
 
-        <!-- <ul class="list-group">
-             {% for key, value in bread_object.schedule.items() %}
-             <li class="list-group-item">{{key}}: {{value}}</li>
-             {% endfor %}
-             </ul>
-        -->
-        <div class="row mx-auto justify-content-center">
-            <table class="table table-bordered table-responsive-sm">
-                {% for key, value in bread_object.schedule.items() %}
-                    <tr>
-                        <th>{{key}}</th>
-                        <th>{{value}}</th>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
+    <!-- <div class="row mx-auto justify-content-center">
+         <table class="table table-bordered table-responsive-sm">
+         {% for key, value in bread_object.schedule.items() %}
+         <tr>
+         <th>{{key}}</th>
+         <th>{{value}}</th>
+         </tr>
+         {% endfor %}
+         </table>
+         </div>
+    -->
 
-    </main>
+    <div class="row mx-auto justify-content-center">
+        <table class="table table-bordered table-responsive-sm">
+            <thead class="thead">
+                <tr>
+                    <th scope="col">Event</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mixing</td>
+                    <td>{{bread_object.schedule.get('mixing_time')}}</td>
+                </tr>
+                <tr>
+                    <td>First Rise</td>
+                    <td>{{bread_object.schedule.get('rise0')}}</td>
+                </tr>
+                <tr>
+                    <td>Action</td>
+                    <td>{{bread_object.schedule.get('action_time')}}</td>
+                </tr>
+                <tr>
+                    <td>Second Rise</td>
+                    <td>{{bread_object.schedule.get('rise1')}}</td>
+                </tr>
+                <tr>
+                    <td>Bake</td>
+                    <td>{{bread_object.schedule.get('bake_time')}}</td>
+                </tr>
+                <tr>
+                    <td>Cool</td>
+                    <td>{{bread_object.schedule.get('cool_time')}}</td>
+                </tr>
+                <tr>
+                    <td>Eat!</td>
+                    <td>{{time_target}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
 
 {% endblock %}

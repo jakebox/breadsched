@@ -2,13 +2,11 @@
 A website/app to help you time your bread correctly.
 
 * Todos
-+ Optimize rendering output.html (maybe make a dictionary instead of a )
++ Add option to not have a target time, just a start time
 ** Long-term
-+ Fix time adjustment calculations
-  * Not a good system currently, maybe find some formula to do it, not sure
 + Add submit checking (make sure all boxes are filled out before allowing submit button)
-+ Make index.html work better on small width
 + Feedback/error handling if there is not enough time to make bread
++ Improve submit checking
 
 * Code Plan
 ** Calculations
