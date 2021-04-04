@@ -2,101 +2,109 @@
 
 {% block body %}
 
+    <body onload="errorAlertCheck()">
 
-    <main role="main" class="container">
+        <main role="main" class="container">
 
-        <h1>&#x1F35E; Bread Sched &#x1F4C5;</h1>
-        <p>Never mistime your bread again!<br>
+            <h1 style="font-weight: 700;">&#x1F35E; Bread Sched &#x1F4C5;</h1>
+            <p class="lead">Never mistime your bread again!<br>
 
-            <div class="container">
-                <form action = "/" method="post">
-
-                    <div class="form-group">
-                        <div class="form-row mx-auto justify-content-center">
-                            <div class="row align-items-end">
-                                <div class="col-4">
-                                    <label for="mixtime">Mixtime:</label>
-                                    <input name="mixtime" class="form-control" id="mixtime" type="number" value="30"><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="first_rise">1st rise:</label>
-                                    <input name="first_rise" class="form-control" id="first_rise" type="number" value="180"><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="first_rise_range">1st rise range:</label>
-                                    <input name="first_rise_range" class="form-control" id="first_rise_range" type="number" value="30"><br>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row mx-auto justify-content-center">
-                            <div class="row align-items-end">
-                                <div class="col-4">
-                                    <label for="Second rise">2nd rise:</label>
-                                    <input name="second_rise" class="form-control" id="second_rise" type="number" value="60"><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="second_rise_range">2nd rise range:</label>
-                                    <input name="second_rise_range" class="form-control" id="second_rise_range" type="number" value="30"><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="action_time">Action time:</label>
-                                    <input name="action_time" class="form-control" id="action_time" type="number" value="15"><br>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row mx-auto justify-content-center">
-                            <div class="row align-items-end">
-                                <div class="col-4">
-                                    <label for="bake_time">Bake time:</label>
-                                    <input name="bake_time" class="form-control" id="bake_time" type="number" value="35"><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="cool_time">Cool time:</label>
-                                    <input name="cool_time" class="form-control" id="cool_time" type="number" value="15"><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="bread_kind">Bread name:</label>
-                                    <input name="bread_kind" class="form-control" id="bread_kind" type="text" placeholder="Brioche" autocomplete="off"><br>
-                                </div>
-                            </div>
-                        </div>
+                <div class="container">
+                    <form action = "/" method="post">
 
                         <div class="form-group">
                             <div class="form-row mx-auto justify-content-center">
-                                <div class="col-*">
-                                    <label for="minimum_start_time">Earliest start time:</label>
-                                    <input name="minimum_start_time" class="form-control" type="time"><br>
-                                </div>
-                                <div class="col-*">
-                                    <label for="target_time">Target time to eat:</label>
-                                    <input name="target_time" id="target_time" class="form-control" type="time"><br>
+                                <div class="row align-items-end">
+                                    <div class="col-4">
+                                        <label for="mixtime">Mixtime:</label>
+                                        <input name="mixtime" class="form-control" id="mixtime" type="number" value="30"><br>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="first_rise">1st rise:</label>
+                                        <input name="first_rise" class="form-control" id="first_rise" type="number" value="180"><br>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="first_rise_range">1st rise range:</label>
+                                        <input name="first_rise_range" class="form-control" id="first_rise_range" type="number" value="30"><br>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="form-row mx-auto justify-content-center">
+                                <div class="row align-items-end">
+                                    <div class="col-4">
+                                        <label for="Second rise">2nd rise:</label>
+                                        <input name="second_rise" class="form-control" id="second_rise" type="number" value="60"><br>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="second_rise_range">2nd rise range:</label>
+                                        <input name="second_rise_range" class="form-control" id="second_rise_range" type="number" value="30"><br>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="action_time">Action time:</label>
+                                        <input name="action_time" class="form-control" id="action_time" type="number" value="15"><br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row mx-auto justify-content-center">
+                                <div class="row align-items-end">
+                                    <div class="col-4">
+                                        <label for="bake_time">Bake time:</label>
+                                        <input name="bake_time" class="form-control" id="bake_time" type="number" value="35"><br>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="cool_time">Cool time:</label>
+                                        <input name="cool_time" class="form-control" id="cool_time" type="number" value="15"><br>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="bread_kind">Bread name:</label>
+                                        <input name="bread_kind" class="form-control" id="bread_kind" type="text" placeholder="Brioche" autocomplete="off" onKeyUp="formChecking()"><br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-row mx-auto justify-content-center">
+                                    <div class="col-*">
+                                        <label for="minimum_start_time">Earliest start time:</label>
+                                        <input name="minimum_start_time" class="form-control" type="time"><br>
+                                    </div>
+                                    <div class="col-*">
+                                        <label for="target_time">Target time to eat:</label>
+                                        <input name="target_time" id="target_time" class="form-control" type="time" onKeyUp="formChecking()"><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit" class="btn btn-primary" disabled>Submit</button>
                         </div>
-                        <button type="submit" id="submit" class="btn btn-primary" disabled>Submit</button>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-    </main>
+        </main>
 
-    <script>
-     document.querySelector('#bread_kind').onkeyup = function() {
-         if (document.querySelector('#bread_kind').value === '' || document.querySelector('#target_time').value === '') {
-             document.querySelector('#submit').disabled = true;
+        <script>
+         function formChecking() {
+             if (document.querySelector('#bread_kind').value === '' || document.querySelector('#target_time').value === '') {
+                 document.querySelector('#submit').disabled = true;
+             }
+             else {
+                 document.querySelector('#submit').disabled = false;
+             }
          }
-         else {
-             document.querySelector('#submit').disabled = false;
+         
+         function errorAlertCheck(){
+             if ("{{error}}" === "time_error") {
+                 alert("Not enough time to make your bread! Please adjust your provided times.");
+             }
          }
-     }
-    </script>
+
+        </script>
 
 {% endblock %}

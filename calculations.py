@@ -7,9 +7,6 @@ class Bread():
         # User-provided values
         self.bread_kind = bread_kind
 
-        # How much to change the times by if you are too close on time (WIP WILL CHANGE)
-        self.reduction_factor = 0.2
-
         # Dict of times
         self.times = {"mixing_time": mixtime, "rise0": rise0,
                       "action_time": action_time, "rise1": rise1, "bake_time": bake_time,
@@ -46,7 +43,7 @@ class Bread():
 
 
     def calculate_time(self, rerun_shorter=False):
-    # Total process time comes out in minutes
+        """Calculates rise times and adjusts bulk rise time if need be."""
         if not rerun_shorter:
             for time in self.times.values():
                 self.total_rise_time = self.total_rise_time + time # Summing the times
@@ -62,26 +59,23 @@ class Bread():
 
             time_wo_rise0 = 0
             for label, time in self.times.items():
-                if label == "rise0":
+                if label == "rise0": # Because we are calculating the rise time without rise0
                     pass
                 else:
                     time_wo_rise0 += time
             # minimum rise 0 + rest of time < total time, we're good
             if (self.times.get('rise0') - self.time_ranges.get('rise0_range') + time_wo_rise0 <= self.available_baking_time):
                 print("It is possible to make your bread!")
-                # x = self.times.get('rise0') - self.time_ranges.get('rise0_range') + time_wo_rise0
                 rise_offset = -1 * self.available_baking_time + time_wo_rise0 + self.times.get('rise0')
-                # print(rise_offset)
                 self.times['rise0'] -= rise_offset # Adjusted rise0
-                # print(self.times['rise0'])
                 self.calculate_time()
             else:
-                # Ends here
-                raise ValueError("Not enough time to make the bread.")
+                raise ValueError("Not enough time to make the bread.") # Ends here
+                
 
 
     def calc_lps(self):
-        # Calculate a latest possible time to start the bread. Returns in 24 hour time.
+        """ Calculate a latest possible time to start the bread. Returns in 24 hour time. """
         latest_possible_start = timedelta()
         latest_possible_start = timedelta(hours=self.time_target_hours, minutes=self.time_target_minutes) - timedelta(hours=(self.total_rise_time / 60))
         dp = str(latest_possible_start)[:-3] # Return the time but without the seconds bit (so just HH:MM)
@@ -101,8 +95,7 @@ class Bread():
 
         for key, time in self.schedule.items():
             # Set the value of the key to a 12-hour string version (i.e 12:50 PM) of the 'current'
-            # time, which is the time the event should begin, then increment the counter by the amount of timedelta
-            # that was used. I think this only works because there is a copy being made somewhere but I'm not sure.
+            # time, which is the time the event should begin, then increment the counter by the amount of timedelta that was used.
             self.schedule[key] = twentyfour_to_twelve(str(current_time)[:-3])
             current_time += timedelta(minutes=time)
             if key == 'rise0':

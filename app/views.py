@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from app import app
 
 from calculations import *
@@ -29,7 +29,8 @@ def index():
       except ValueError:
          # display error message if necessary e.g. print str(e)
          print("Failed, error out.")
-         return render_template("error.html", error_reason="Not enough time to make your bread!")
+         return render_template("index.html", error="time_error")
+         # return render_template("error.html", error_reason="Not enough time to make your bread!")
       else:
          print("Original first rise:", first_rise, "| Adjusted first rise:", bread.times.get('rise0'))
 
@@ -38,7 +39,7 @@ def index():
          bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
          # return redirect("/output") # Send to output page
          # return redirect(url_for('output', user=user_name))
-         return render_template("output.html", user="Jake", bread_object=bread, time_target=twentyfour_to_twelve(target_time), latest_possible_start=twentyfour_to_twelve(latest_possible_start), bread_kind=bread.bread_kind, total_rise_time=int(bread.total_rise_time/60 * 100) / 100)
+         return render_template("output.html", user="Jake", bread_object=bread, time_target=twentyfour_to_twelve(target_time), latest_possible_start=twentyfour_to_twelve(latest_possible_start), bread_kind=bread.bread_kind, total_rise_hours=int(bread.total_rise_time / 60), total_rise_mins=(bread.total_rise_time % 60))
 
 @app.route("/output")
 def output():

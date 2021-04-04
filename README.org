@@ -3,10 +3,7 @@ A website/app to help you time your bread correctly.
 
 * Todos
 + Add option to not have a target time, just a start time
-** Long-term
-+ Add submit checking (make sure all boxes are filled out before allowing submit button)
-+ Feedback/error handling if there is not enough time to make bread
-+ Improve submit checking
++ Better looking schedule output
 
 * Code Plan
 ** Calculations
