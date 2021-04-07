@@ -2,57 +2,71 @@
 
 {% block body %}
 
-<main role="main" class="container">
+    <main role="main" class="container">
 
-    <h1>{{ bread_kind }} Bread Sched</h1>
+        <h1>{{ bread_object.bread_kind }} Bread Sched</h1>
 
-    <p class="lead">Here is your automagically generated &#x1F35E;&#x1F4C5;!<br></p>
+        <p class="lead">Here is your automagically generated &#x1F35E;&#x1F4C5;!<br></p>
 
-    <p>It looks like you are making {{ bread_kind }}.
-        To have it ready by {{ time_target }} like you wanted, the <strong>latest you could start making your bread is {{ latest_possible_start }}.</strong><br>
-        Start to finish, it will take a <strong>total time of {{ total_rise_hours }} hours and {{ total_rise_mins }} minutes</strong>, according to the information you inputted.</p>
 
-    <div class="row mx-auto justify-content-center">
-        <table class="table table-bordered table-responsive-sm">
-            <thead class="thead">
-                <tr>
-                    <th scope="col">Event</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Mixing</td>
-                    <td>{{bread_object.schedule.get('mixing_time')}}</td>
-                </tr>
-                <tr>
-                    <td>First Rise</td>
-                    <td>{{bread_object.schedule.get('rise0')}}</td>
-                </tr>
-                <tr>
-                    <td>Action</td>
-                    <td>{{bread_object.schedule.get('action_time')}}</td>
-                </tr>
-                <tr>
-                    <td>Second Rise</td>
-                    <td>{{bread_object.schedule.get('rise1')}}</td>
-                </tr>
-                <tr>
-                    <td>Bake</td>
-                    <td>{{bread_object.schedule.get('bake_time')}}</td>
-                </tr>
-                <tr>
-                    <td>Cool</td>
-                    <td>{{bread_object.schedule.get('cool_time')}}</td>
-                </tr>
-                <tr>
-                    <td>Eat!</td>
-                    <td>{{time_target}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <p>It looks like you are making {{ bread_object.bread_kind.lower() }}.
 
-</main>
+            {% if target_time %}
+                To have it ready by {{ bread_object.schedule.get('eat') }} like you wanted, the <strong>latest you could start making your bread is {{ latest_possible_start }}.</strong><br>
+            {% endif %}
+
+            {% if not target_time %}
+                You said you wanted to <strong>begin making your bread at {{ latest_possible_start }}</strong>. In that case, you'll finish making your bread at <strong>{{ bread_object.schedule.get('eat') }}</strong><br>
+            {% endif %}
+
+            Start to finish, it will take a <strong>total time of {{ total_rise_hours }} hours and {{ total_rise_mins }} minutes</strong>, according to the information you input.</p><br>
+
+
+            <div class="row mx-auto justify-content-center">
+                <table class="table table-bordered table-responsive-sm">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">Event</th>
+                            <th scope="col">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mixing</td>
+                            <td>{{bread_object.schedule.get('mixing_time')}}</td>
+                        </tr>
+                        <tr>
+                            <td>First Rise</td>
+                            <td>{{bread_object.schedule.get('rise0')}}</td>
+                        </tr>
+                        <tr>
+                            <td>Action</td>
+                            <td>{{bread_object.schedule.get('action_time')}}</td>
+                        </tr>
+                        <tr>
+                            <td>Second Rise</td>
+                            <td>{{bread_object.schedule.get('rise1')}}</td>
+                        </tr>
+                        <tr>
+                            <td>Bake</td>
+                            <td>{{bread_object.schedule.get('bake_time')}}</td>
+                        </tr>
+                        <tr>
+                            <td>Cool</td>
+                            <td>{{bread_object.schedule.get('cool_time')}}</td>
+                        </tr>
+                        <tr>
+                            <td>Eat!</td>
+                            <td>{{bread_object.schedule.get('eat')}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row mx-auto justify-content-center">
+                <h5><em><small class="text-muted">The start of one event marks the end of another. <br> In other words, there are no breaks between events.</small></em></h5>
+            </div>
+
+    </main>
 
 {% endblock %}

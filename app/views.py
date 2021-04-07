@@ -15,14 +15,17 @@ def index():
       first_rise = int(request.form.get("first_rise"))
       first_rise_range = int(request.form.get("first_rise_range"))
       second_rise = int(request.form.get("second_rise"))
-      second_rise_range = int(request.form.get("second_rise_range"))
       action_time = int(request.form.get("action_time"))
       bake_time = int(request.form.get("bake_time"))
       cool_time = int(request.form.get("cool_time"))
       target_time = str(request.form.get("target_time"))
       minimum_start_time = str(request.form.get("minimum_start_time"))
 
-      bread = Bread(target_time, minimum_start_time, bread_kind, mixtime, first_rise, first_rise_range, second_rise, second_rise_range, action_time, bake_time, cool_time)
+      times = {"mixing_time": mixtime, "rise0": first_rise,
+               "action_time": action_time, "rise1": second_rise, "bake_time": bake_time,
+               "cool_time": cool_time}
+
+      bread = Bread(target_time, minimum_start_time, "Challah", times, first_rise_range)
 
       try:
          bread.calculate_time()
@@ -30,20 +33,21 @@ def index():
          # display error message if necessary e.g. print str(e)
          print("Failed, error out.")
          return render_template("index.html", error="time_error")
-         # return render_template("error.html", error_reason="Not enough time to make your bread!")
       else:
          print("Original first rise:", first_rise, "| Adjusted first rise:", bread.times.get('rise0'))
 
-         latest_possible_start = bread.calc_lps()
-         # Could be done using any times - so if you don't have a target time but you do have a start time this could be used
-         bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
-         # return redirect("/output") # Send to output page
-         # return redirect(url_for('output', user=user_name))
-         return render_template("output.html", user="Jake", bread_object=bread, time_target=twentyfour_to_twelve(target_time), latest_possible_start=twentyfour_to_twelve(latest_possible_start), bread_kind=bread.bread_kind, total_rise_hours=int(bread.total_rise_time / 60), total_rise_mins=(bread.total_rise_time % 60))
+         if target_time != "":
+            print("We've got a target time")
+            latest_possible_start = bread.calc_lps()
+            bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
+            return render_template("output.html", target_time=True, bread_object=bread, latest_possible_start=twentyfour_to_twelve(latest_possible_start), total_rise_hours=int(bread.total_rise_time / 60), total_rise_mins=(bread.total_rise_time % 60))
+         else:
+            print("No target time, just a start time")
+            bread.calculate_schedule(minimum_start_time[0:2], minimum_start_time[3:5])
+            return render_template("output.html", target_time=False, bread_object=bread, latest_possible_start=twentyfour_to_twelve(minimum_start_time), total_rise_hours=int(bread.total_rise_time / 60), total_rise_mins=(bread.total_rise_time % 60))
+
 
 @app.route("/output")
 def output():
    if request.method == "GET":
-      # return render_template("output.html", bread="")
-      # return render_template("error.html")
       return render_template("error.html", error_reason="You haven't filled out any details yet!")

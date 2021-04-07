@@ -2,8 +2,8 @@
 A website/app to help you time your bread correctly.
 
 * Todos
-+ Add option to not have a target time, just a start time
 + Better looking schedule output
++ Make getting times from form use dict ([[./app/views.py]] line 13)
 
 * Code Plan
 ** Calculations
