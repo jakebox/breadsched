@@ -9,21 +9,18 @@ def index():
    if request.method == "GET":
       return render_template('index.html')
    else:
-      # TODO - compact this/optimize
+
+      times = {"mixing_time": "", "rise0": "",
+               "action_time": "", "rise1": "", "bake_time": "",
+               "cool_time": ""}
+
+      for key, value in times.items():
+         times[key] = int(request.form.get(key))
+      
       bread_kind = str(request.form.get("bread_kind"))
-      mixtime = int(request.form.get("mixtime"))
-      first_rise = int(request.form.get("first_rise"))
       first_rise_range = int(request.form.get("first_rise_range"))
-      second_rise = int(request.form.get("second_rise"))
-      action_time = int(request.form.get("action_time"))
-      bake_time = int(request.form.get("bake_time"))
-      cool_time = int(request.form.get("cool_time"))
       target_time = str(request.form.get("target_time"))
       minimum_start_time = str(request.form.get("minimum_start_time"))
-
-      times = {"mixing_time": mixtime, "rise0": first_rise,
-               "action_time": action_time, "rise1": second_rise, "bake_time": bake_time,
-               "cool_time": cool_time}
 
       bread = Bread(target_time, minimum_start_time, "Challah", times, first_rise_range)
 
@@ -34,8 +31,6 @@ def index():
          print("Failed, error out.")
          return render_template("index.html", error="time_error")
       else:
-         print("Original first rise:", first_rise, "| Adjusted first rise:", bread.times.get('rise0'))
-
          if target_time != "":
             print("We've got a target time")
             latest_possible_start = bread.calc_lps()

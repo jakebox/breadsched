@@ -3,7 +3,6 @@ A website/app to help you time your bread correctly.
 
 * Todos
 + Better looking schedule output
-+ Make getting times from form use dict ([[./app/views.py]] line 13)
 
 * Code Plan
 ** Calculations
