@@ -3,6 +3,7 @@ A website/app to help you time your bread correctly.
 
 * Todos
 + Better looking schedule output
++ Write info page
 
 * Code Plan
 ** Calculations
@@ -28,7 +29,7 @@ A website/app to help you time your bread correctly.
 2) Add up all bread times with ideal times
 3) Calculate time to begin based on first calculation
    - if time is before minimum start time, redo calculations but using the range options (so subtract say half the allotted range)
-
+     
 * Links/Notes
 + [[https://flask.palletsprojects.com/en/1.1.x/quickstart/][Flask Quickstart]] 
 + [[https://jinja.palletsprojects.com/en/2.11.x/templates/][Jinja Templates]]

@@ -46,3 +46,8 @@ def index():
 def output():
    if request.method == "GET":
       return render_template("error.html", error_reason="You haven't filled out any details yet!")
+
+@app.route("/info")
+def info():
+   if request.method == "GET":
+      return render_template("info.html")
