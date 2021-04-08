@@ -1,51 +1,31 @@
 #+TITLE: BreadSched
-A website/app to help you time your bread correctly.
+A website/app to help you time your bread correctly. Built using Python, JavaScript, and HTML/CSS. Uses the Flask web microframework. Final project for CS50/AP CSP.
 
-* Todos
-+ Better looking schedule output
-+ Write info page
+* Details
++ Helps you time your bread baking
++ Takes in multiple time parameters
++ Generates schedule based on either target time or start time
++ Calculations will intelligently adjust time if needed
++ Website includes home, info page, error checking, and output
+  * Output page changes depending on options (target time or start time)
 
-* Code Plan
 ** Calculations
-*** Needed Data
-**** Optimization
+*** Optimization
 + Maximize for time
 + Aim for specific time of day
-**** Bread details
-1. Type
-2. Dough mixing time
-3. 1st rise range & optimum
-4. Action time (ex kneading the dough/braiding)
-5. 2nd rise range & optimum
-6. Time to preheat oven
-7. Time to bake
-8. Time to cool before eating
-**** Assumptions
-+ Two rises
-+ Aim for specific time of day
-+ Prioritize medium-length first rise and correct length second rise
-** Calculation Order
-1) Find minimum start time
-2) Add up all bread times with ideal times
-3) Calculate time to begin based on first calculation
-   - if time is before minimum start time, redo calculations but using the range options (so subtract say half the allotted range)
-     
-* Links/Notes
-+ [[https://flask.palletsprojects.com/en/1.1.x/quickstart/][Flask Quickstart]] 
-+ [[https://jinja.palletsprojects.com/en/2.11.x/templates/][Jinja Templates]]
-+ [[https://github.com/benhg/femtoblog/tree/master/project][Femtoblog]]
-+ [[https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates][Mega Flask tutorials]]
-** HTML/CSS
-+ https://getbootstrap.com/docs/4.3/getting-started/introduction/
-+ https://getbootstrap.com/docs/4.1/components/forms/
-+ https://getbootstrap.com/docs/4.0/utilities/spacing/
-+ https://getbootstrap.com/docs/4.0/layout/grid/
-+ https://getbootstrap.com/docs/4.0/components/navbar/
-+ https://getbootstrap.com/docs/4.0/examples/starter-template/
-+ https://getbootstrap.com/docs/4.0/utilities/flex/
-** Flask
-+ https://stackoverflow.com/questions/7478366/create-dynamic-urls-in-flask-with-url-for
-+ https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
-+ https://www.reddit.com/r/flask/comments/gjfzdc/redirect_vs_render_template/
-** Misc
-+ https://flowingdata.com/2020/05/12/bread-scheduler/ - sourdough feeding chart that looks nice, maybe future inspiration
++ Only first rise can be shortened
+*** Input data
++ Mixtime
++ 1st Rise
++ 1st rise range
++ 2nd rise
++ Action time
++ Bake time
++ Cool time
++ Bread name
++ Earliest start time/start time
++ Target time
+  
+** Pictures
+[[file:pictures/input_page.png]]
+[[file:pictures/output_page.png]]

@@ -41,7 +41,6 @@ class Bread():
             b = timedelta(hours=int(self.minimum_start_time[0:2]), minutes=int(self.minimum_start_time[2:4]))
             datetime_obj = a - b
             self.available_baking_time = datetime_obj.seconds / 60 # Available baking time in minutes
-            print(self.available_baking_time)
 
 
     def calculate_time(self, rerun_shorter=False):
@@ -49,14 +48,12 @@ class Bread():
         if not rerun_shorter:
             for time in self.times.values():
                 self.total_rise_time = self.total_rise_time + time # Summing the times
-            if (self.total_rise_time > self.available_baking_time):
-                print("Rise time greater than baking time")
-                print("Naive total rise time:", self.total_rise_time)
+            if self.total_rise_time > self.available_baking_time:
+                print("Rise time greater than baking time, making adjustments")
                 self.calculate_time(True) # Rerun the calculations but with a time reduction
             else:
                 return 0 # Time successfully calculated
         else: # If we are recalculating the time:
-            print("Got to else")
             self.total_rise_time = 0 # Reset the time
 
             time_wo_rise0 = 0
@@ -65,11 +62,10 @@ class Bread():
                     pass
                 else:
                     time_wo_rise0 += time
-            # minimum rise 0 + rest of time < total time, we're good
             if (self.times.get('rise0') - self.rise0_range + time_wo_rise0 <= self.available_baking_time):
                 print("It is possible to make your bread!")
-                rise_offset = -1 * self.available_baking_time + time_wo_rise0 + self.times.get('rise0')
-                self.times['rise0'] -= rise_offset # Adjusted rise0
+                rise_offset = -1 * self.available_baking_time + time_wo_rise0 + self.times.get('rise0') # Some basic algebra
+                self.times['rise0'] -= rise_offset # Adjusted rise0 - subtracting the new offset we calculated from the original rise0
                 self.calculate_time()
             else:
                 raise ValueError("Not enough time to make the bread.") # Ends here
@@ -124,13 +120,13 @@ if __name__ == '__main__':
              "action_time": 15, "rise1": 60, "bake_time": 35,
              "cool_time": 15}
     
-    bread = Bread(time_target, minimum_start_time, "Challah", times, first_rise_range)
+    bread = Bread(time_target, minimum_start_time, "Challah", times, 60)
 
     try:
         bread.calculate_time()
     except ValueError:
     # display error message if necessary e.g. print str(e)
-        print("Failed, error out.")
+        print("Failed, error - not sufficient time.")
     else:
 
         if time_target != "":
@@ -139,19 +135,14 @@ if __name__ == '__main__':
             bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
 
             print("\nAvailable baking time:", bread.available_baking_time, "| Total process time:", bread.total_rise_time)
-            print("Original first rise:", first_rise, "| Adjusted first rise:", bread.times.get('rise0'))
-            print("\nYour", bread.bread_kind, "will take", bread.total_rise_time, "minutes total, equal to", "{:.2f}".format((bread.total_rise_time/60)), "hours.\n The latest you could possibly start at to make it on time for", twentyfour_to_twelve(bread.time_target_full), "is", twentyfour_to_twelve(latest_possible_start))
+            print("\nYour", bread.bread_kind, "will take", bread.total_rise_time, "minutes total, equal to", "{:.2f}".format((bread.total_rise_time/60)),
+                  "hours.\n The latest you could possibly start at to make it on time for",
+                  twentyfour_to_twelve(bread.time_target_full), "is", twentyfour_to_twelve(latest_possible_start))
             print("\nSCHEDULE:")
-            for key, value in bread.schedule.items():
-                print(key.capitalize() + ":", value)
+            for key, value in bread.schedule.items(): print(key.capitalize() + ":", value)
         else:
             print("No target time, just a start time")
-            
             bread.calculate_schedule(minimum_start_time[0:2], minimum_start_time[3:5])
 
-            # print("\nAvailable baking time:", bread.available_baking_time, "| Total process time:", bread.total_rise_time)
-            # print("Original first rise:", first_rise, "| Adjusted first rise:", bread.times.get('rise0'))
-            # print("\nYour", bread.bread_kind, "will take", bread.total_rise_time, "minutes total, equal to", "{:.2f}".format((bread.total_rise_time/60)), "hours.\n The latest you could possibly start at to make it on time for", twentyfour_to_twelve(bread.time_target_full), "is", twentyfour_to_twelve(latest_possible_start))
             print("\nSCHEDULE:")
-            for key, value in bread.schedule.items():
-                print(key.capitalize() + ":", value)
+            for key, value in bread.schedule.items(): print(key.capitalize() + ":", value)

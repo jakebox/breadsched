@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect
 from app import app
 
 from calculations import *
@@ -10,19 +10,25 @@ def index():
       return render_template('index.html')
    else:
 
-      times = {"mixing_time": "", "rise0": "",
-               "action_time": "", "rise1": "", "bake_time": "",
-               "cool_time": ""}
+      times = {"mixing_time": "0", "rise0": "0",
+               "action_time": "0", "rise1": "0", "bake_time": "0",
+               "cool_time": "0"}
 
       for key, value in times.items():
-         times[key] = int(request.form.get(key))
+         form_data = request.form.get(key)
+         if form_data != "": times[key] = int(request.form.get(key))
+         else: times[key] = 0
       
       bread_kind = str(request.form.get("bread_kind"))
-      first_rise_range = int(request.form.get("first_rise_range"))
+
+      first_rise_range = request.form.get("first_rise_range")
+      if first_rise_range == "": first_rise_range = 0
+      else: first_rise_range = int(first_rise_range)
+
       target_time = str(request.form.get("target_time"))
       minimum_start_time = str(request.form.get("minimum_start_time"))
 
-      bread = Bread(target_time, minimum_start_time, "Challah", times, first_rise_range)
+      bread = Bread(target_time, minimum_start_time, bread_kind, times, first_rise_range)
 
       try:
          bread.calculate_time()
@@ -32,14 +38,18 @@ def index():
          return render_template("index.html", error="time_error")
       else:
          if target_time != "":
-            print("We've got a target time")
-            latest_possible_start = bread.calc_lps()
+            target_timeJ = True
+            latest_possible_start = twentyfour_to_twelve(bread.calc_lps())
             bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
-            return render_template("output.html", target_time=True, bread_object=bread, latest_possible_start=twentyfour_to_twelve(latest_possible_start), total_rise_hours=int(bread.total_rise_time / 60), total_rise_mins=(bread.total_rise_time % 60))
          else:
-            print("No target time, just a start time")
+            target_timeJ = False
+            latest_possible_start = twentyfour_to_twelve(minimum_start_time)
             bread.calculate_schedule(minimum_start_time[0:2], minimum_start_time[3:5])
-            return render_template("output.html", target_time=False, bread_object=bread, latest_possible_start=twentyfour_to_twelve(minimum_start_time), total_rise_hours=int(bread.total_rise_time / 60), total_rise_mins=(bread.total_rise_time % 60))
+
+         return render_template("output.html", target_time=target_timeJ, bread_object=bread,
+                                latest_possible_start=latest_possible_start,
+                                total_rise_hours=int(bread.total_rise_time / 60),
+                                total_rise_mins=(bread.total_rise_time % 60))
 
 
 @app.route("/output")
