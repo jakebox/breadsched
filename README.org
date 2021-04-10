@@ -29,3 +29,10 @@ A website/app to help you time your bread correctly. Built using Python, JavaScr
 ** Pictures
 [[file:pictures/input_page.png]]
 [[file:pictures/output_page.png]]
+
+* Todos/Plans
++ UX/UI improvements
+  * Look perfect on both desktop and mobile
+  * Fix footer
++ Expand to more baked goods
++ Save breads/times
