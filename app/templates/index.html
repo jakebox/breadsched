@@ -1,95 +1,94 @@
 {% extends "base.html" %}
 
+{% block body_attrs %}onload="errorAlertCheck()"{% endblock %}
 {% block body %}
 
-<body onload="errorAlertCheck()">
 
-    <main role="main" class="container">
+    <h1 style="font-weight: 700;">&#x1F35E; Bread Sched &#x1F4C5;</h1>
+    <p class="lead">Never mistime your bread again!<br>
+        <h5><em><small class="text-muted">Please input times in minutes. Click <a href="/info">here</a> for info on each parameter.</small></em></h5><br>
 
-        <h1 style="font-weight: 700;">&#x1F35E; Bread Sched &#x1F4C5;</h1>
-        <p class="lead">Never mistime your bread again!<br>
-            <h5><em><small class="text-muted">Please input times in minutes. Click <a href="/info">here</a> for info on each parameter.</small></em></h5><br>
-
-            <div class="container">
-                <form action = "/" method="post">
-                    <div class="form-group">
-                        <div class="form-row mx-auto justify-content-center">
-                            <div class="row align-items-end">
-                                <div class="col-4">
-                                    <label for="mixing_time">Mixtime:</label>
-                                    <input name="mixing_time" class="form-control" id="mixing_time" type="tel" value=""><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="rise0">1st rise:</label>
-                                    <input name="rise0" class="form-control" id="rise0" type="tel" value=""><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="first_rise_range">1st rise range:</label>
-                                    <input name="first_rise_range" class="form-control" id="first_rise_range" type="tel" value=""><br>
-                                </div>
+        <div class="container">
+            <form action = "/" method="post">
+                <div class="form-group">
+                    <div class="form-row mx-auto justify-content-center">
+                        <div class="row align-items-end">
+                            <div class="col-4">
+                                <label for="mixing_time">Mixtime:</label>
+                                <input name="mixing_time" class="form-control" id="mixing_time" type="tel" value=""><br>
                             </div>
-                        </div>
 
-                        <div class="form-row mx-auto justify-content-center">
-                            <div class="row align-items-end">
-                                <div class="col-4">
-                                    <label for="Second rise">2nd rise:</label>
-                                    <input name="rise1" class="form-control" id="rise1" type="tel" value=""><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="action_time">Action time:</label>
-                                    <input name="action_time" class="form-control" id="action_time" type="tel" value=""><br>
-                                </div>
-
-                                <div class="col-4">
-                                    <label for="bake_time">Bake time:</label>
-                                    <input name="bake_time" class="form-control" id="bake_time" type="tel" value=""><br>
-                                </div>
+                            <div class="col-4">
+                                <label for="rise0">1st rise:</label>
+                                <input name="rise0" class="form-control" id="rise0" type="tel" value=""><br>
                             </div>
-                        </div>
 
-                        <div class="form-row mx-auto justify-content-center">
-                            <div class="row align-items-end">
-                                <div class="col-6">
-                                    <label for="cool_time">Cool time:</label>
-                                    <input name="cool_time" class="form-control" id="cool_time" type="tel" value=""><br>
-                                </div>
-
-                                <div class="col-6">
-                                    <label for="bread_kind">Bread name:</label>
-                                    <input name="bread_kind" class="form-control" id="bread_kind" type="text" placeholder="Brioche" autocomplete="off" onKeyDown="formChecking()"><br>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-row mx-auto justify-content-center">
-                                <div class="col-*">
-                                    <label for="minimum_start_time">Earliest start time:</label>
-                                    <input name="minimum_start_time" id="minimum_start_time" class="form-control" type="time" onKeyUp="formChecking()"><br>
-                                </div>
-                                <div class="col-*">
-                                    <label for="target_time">Target time to eat:</label>
-                                    <input name="target_time" class="form-control" type="time">
-                                </div>
-                            </div>
-                            <div class="row mx-auto justify-content-center">
-                                <h5><em><small class="text-muted">To create a schedule with just a start time, <br>enter desired start time as Earliest Start Time and leave Target Time blank.</small></em></h5>
-                            </div>
-                        </div>
-                        <div class="row mx-auto justify-content-center">
-                            <div class="col-sm-auto mx-auto justify-content-center">
-                                <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
+                            <div class="col-4">
+                                <label for="first_rise_range">1st rise range:</label>
+                                <input name="first_rise_range" class="form-control" id="first_rise_range" type="tel" value=""><br>
                             </div>
                         </div>
                     </div>
-                </form><br>
-            </div>
-    </main>
 
+                    <div class="form-row mx-auto justify-content-center">
+                        <div class="row align-items-end">
+                            <div class="col-4">
+                                <label for="Second rise">2nd rise:</label>
+                                <input name="rise1" class="form-control" id="rise1" type="tel" value=""><br>
+                            </div>
+
+                            <div class="col-4">
+                                <label for="action_time">Action time:</label>
+                                <input name="action_time" class="form-control" id="action_time" type="tel" value=""><br>
+                            </div>
+
+                            <div class="col-4">
+                                <label for="bake_time">Bake time:</label>
+                                <input name="bake_time" class="form-control" id="bake_time" type="tel" value=""><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row mx-auto justify-content-center">
+                        <div class="row align-items-end">
+                            <div class="col-6">
+                                <label for="cool_time">Cool time:</label>
+                                <input name="cool_time" class="form-control" id="cool_time" type="tel" value=""><br>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="bread_kind">Bread name:</label>
+                                <input name="bread_kind" class="form-control" id="bread_kind" type="text" placeholder="Brioche" autocomplete="off" onKeyUp="formChecking()"><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row mx-auto justify-content-center">
+                            <div class="col-*">
+                                <label for="minimum_start_time">Earliest start time:</label>
+                                <input name="minimum_start_time" id="minimum_start_time" class="form-control" type="time" onKeyUp="formChecking()"><br>
+                            </div>
+                            <div class="col-*">
+                                <label for="target_time">Target time to eat:</label>
+                                <input name="target_time" class="form-control" type="time">
+                            </div>
+                        </div>
+                        <div class="row mx-auto justify-content-center">
+                            <h5><em><small class="text-muted">To create a schedule with just a start time, <br>enter desired start time as Earliest Start Time and leave Target Time blank.</small></em></h5>
+                        </div>
+                    </div>
+                    <div class="row mx-auto justify-content-center">
+                        <div class="col-sm-auto mx-auto justify-content-center">
+                            <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form><br>
+        </div>
+{% endblock %}
+
+{% block scripts %}
     <script>
      function formChecking() {
          if (document.querySelector('#bread_kind').value === '' || document.querySelector('#minimum_start_time').value === '') {
@@ -100,6 +99,14 @@
          }
      }
 
+     $("#minimum_start_time").blur(function(){
+         formChecking();
+     });
+
+     $("#bread_kind").blur(function(){
+         formChecking();
+     });
+
      function errorAlertCheck(){
          if ("{{error}}" === "time_error") {
              alert("Not enough time to make your bread! Please adjust your provided times.");
@@ -107,5 +114,4 @@
      }
 
     </script>
-
-    {% endblock %}
+{% endblock %}

@@ -1,3 +1,9 @@
+###
+### Bread Class for BreadSched
+### Handles bread details and computations
+### (c) 2021 J. Boxerman
+###
+
 from datetime import datetime, timedelta
 
 class Bread():
