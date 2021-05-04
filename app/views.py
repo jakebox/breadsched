@@ -1,3 +1,9 @@
+###
+### Flask Views for BreadSched
+### Handles serving pages, runnning calculation off of user input
+### (c) 2021 J. Boxerman
+###
+
 from flask import render_template, request, redirect
 from app import app
 
