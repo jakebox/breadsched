@@ -120,13 +120,14 @@ def twentyfour_to_twelve(time):
 if __name__ == '__main__':
 
     minimum_start_time = "10:00"
-    time_target = "18:30"
+    # target_time = "18:30"
+    target_time = ""
 
     times = {"mixing_time": 30, "rise0": 180,
              "action_time": 15, "rise1": 60, "bake_time": 35,
              "cool_time": 15}
     
-    bread = Bread(time_target, minimum_start_time, "Challah", times, 60)
+    bread = Bread(target_time, minimum_start_time, "Challah", times, 60)
 
     try:
         bread.calculate_time()
@@ -135,7 +136,7 @@ if __name__ == '__main__':
         print("Failed, error - not sufficient time.")
     else:
 
-        if time_target != "":
+        if target_time != "":
             latest_possible_start = bread.calc_lps()
             # Could be done using any times - so if you don't have a target time but you do have a start time this could be used
             bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
@@ -146,6 +147,7 @@ if __name__ == '__main__':
                   twentyfour_to_twelve(bread.time_target_full), "is", twentyfour_to_twelve(latest_possible_start))
             print("\nSCHEDULE:")
             for key, value in bread.schedule.items(): print(key.capitalize() + ":", value)
+
         else:
             print("No target time, just a start time")
             bread.calculate_schedule(minimum_start_time[0:2], minimum_start_time[3:5])

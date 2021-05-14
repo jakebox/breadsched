@@ -20,6 +20,7 @@ def index():
                "action_time": "0", "rise1": "0", "bake_time": "0",
                "cool_time": "0"}
 
+      # get bread process time information
       for key, value in times.items():
          form_data = request.form.get(key)
          if form_data != "": times[key] = int(request.form.get(key))
@@ -27,6 +28,7 @@ def index():
       
       bread_kind = str(request.form.get("bread_kind"))
 
+      # Get the first rise range, if nonexistent set equal to 0
       first_rise_range = request.form.get("first_rise_range")
       if first_rise_range == "": first_rise_range = 0
       else: first_rise_range = int(first_rise_range)
@@ -45,7 +47,7 @@ def index():
       else:
          if target_time != "":
             target_timeJ = True
-            latest_possible_start = twentyfour_to_twelve(bread.calc_lps())
+            latest_possible_start = bread.calc_lps()
             bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
          else:
             target_timeJ = False
@@ -53,7 +55,7 @@ def index():
             bread.calculate_schedule(minimum_start_time[0:2], minimum_start_time[3:5])
 
          return render_template("output.html", target_time=target_timeJ, bread_object=bread,
-                                latest_possible_start=latest_possible_start,
+                                latest_possible_start=twentyfour_to_twelve(latest_possible_start),
                                 total_rise_hours=int(bread.total_rise_time / 60),
                                 total_rise_mins=(bread.total_rise_time % 60))
 
