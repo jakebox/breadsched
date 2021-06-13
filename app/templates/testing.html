@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<h1 style="font-weight: 700;">&#x1F35E; Bread Sched &#x1F4C5;</h1>
+<p class="lead">Never mistime your bread again!<br>
+	<h5><em><small class="text-muted">Please input times in minutes. Click <a href="/info">here</a> for info on each parameter.</small></em></h5><br>
+
+	<form action ="/testing" method="post">
+		<div class="form-group col-md-6">
+			<label for="time0">Time 0</label>
+			<input type="text" class="form-control" name="time0" id="timePicker0" placeholder="Minimum Start Time">
+		</div>
+		<div class="form-group col-md-6">
+			<label for="inputPassword4">Password</label>
+			<input type="text" class="form-control" name="time1" id="timePicker1" placeholder="Target Time">
+		</div>
+		<button type="submit" class="btn btn-primary">Sign in</button>
+	</form>
+
+	{% endblock %}
+
+	{% block scripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+
+	<script>
+
+	 $("#timePicker0").flatpickr({
+		 enableTime: true,
+		 noCalendar: true,
+		 dateFormat: "H:i",
+	 });
+
+	 $("#timePicker1").flatpickr({
+		 enableTime: true,
+		 noCalendar: true,
+		 dateFormat: "H:i",
+	 });
+	</script>
+
+
+	{% endblock %}

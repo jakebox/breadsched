@@ -31,8 +31,6 @@ A website/app to help you time your bread correctly. Built using Python, JavaScr
 [[file:pictures/output_page.png]]
 
 * Todos/Plans
-+ Make website work on mobile
-  * Better time picking system
 + UX/UI improvements
   * Look perfect on both desktop and mobile
   * Fix footer

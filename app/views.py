@@ -34,24 +34,25 @@ def index():
       else: first_rise_range = int(first_rise_range)
 
       target_time = str(request.form.get("target_time"))
+      print(target_time)
       minimum_start_time = str(request.form.get("minimum_start_time"))
 
       bread = Bread(target_time, minimum_start_time, bread_kind, times, first_rise_range)
 
       try:
          bread.calculate_time()
-      except ValueError:
-         # display error message if necessary e.g. print str(e)
+      except ValueError: # display error message if necessary e.g. print str(e)
          print("Failed, error out.")
          return render_template("index.html", error="time_error")
-      else:
-         if target_time != "":
+      else: # If there is no error
+         if target_time != "": # Target time, so start as late as possible
             target_timeJ = True
             latest_possible_start = bread.calc_lps()
             bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
-         else:
+         else: # No target time, so just use the LPS as the start time
             target_timeJ = False
-            latest_possible_start = twentyfour_to_twelve(minimum_start_time)
+            # This LPS isn't actually used, it's just for visual purposes, really it's just the desired start time
+            latest_possible_start = minimum_start_time[0:2] + ":" + minimum_start_time[3:5] 
             bread.calculate_schedule(minimum_start_time[0:2], minimum_start_time[3:5])
 
          return render_template("output.html", target_time=target_timeJ, bread_object=bread,
@@ -69,3 +70,12 @@ def output():
 def info():
    if request.method == "GET":
       return render_template("info.html")
+
+@app.route("/testing", methods=["GET", "POST"])
+def testing():
+   if request.method == "GET":
+      return render_template("testing.html")
+   else:
+      time = str(request.form.get("time0"))
+      print(time)
+      
