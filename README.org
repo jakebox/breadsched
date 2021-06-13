@@ -36,5 +36,4 @@ A website/app to help you time your bread correctly. Built using Python, JavaScr
   * Fix footer
 + Add preheat oven time
 + Better anti-failure (?)
-+ Expand to more baked goods
 + Save breads/times
