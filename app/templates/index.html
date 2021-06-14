@@ -12,7 +12,7 @@
         <form action = "/" method="post">
             <div class="form-group">
                 <div class="form-row mx-auto justify-content-center">
-                    <div class="row align-items-end">
+                    <div class="row align-items-end justify-content-center">
                         <div class="col-4">
                             <label for="mixing_time">Mixtime:</label>
                             <input name="mixing_time" class="form-control" id="mixing_time" type="tel" value=""><br>
@@ -28,10 +28,10 @@
                             <input name="first_rise_range" class="form-control" id="first_rise_range" type="tel" value=""><br>
                         </div>
                     </div>
-                </div>
+				</div>
 
                 <div class="form-row mx-auto justify-content-center">
-                    <div class="row align-items-end">
+                    <div class="row align-items-center justify-content-center">
                         <div class="col-4">
                             <label for="Second rise">2nd rise:</label>
                             <input name="rise1" class="form-control" id="rise1" type="tel" value=""><br>
@@ -47,11 +47,11 @@
                             <input name="bake_time" class="form-control" id="bake_time" type="tel" value=""><br>
                         </div>
                     </div>
-                </div>
+				</div>
 
                 <div class="form-row mx-auto justify-content-center">
-                    <div class="row align-items-end">
-                        <div class="col-6">
+                    <div class="row align-items-end justify-content-center">
+                        <div class="col-5">
                             <label for="cool_time">Cool time:</label>
                             <input name="cool_time" class="form-control" id="cool_time" type="tel" value=""><br>
                         </div>
@@ -61,34 +61,40 @@
                             <input name="bread_kind" class="form-control" id="bread_kind" type="text" placeholder="Brioche" autocomplete="off" onKeyUp="formChecking()"><br>
                         </div>
                     </div>
-                </div>
+				</div>
 
-                <div class="form-group">
-                    <div class="form-row mx-auto justify-content-center">
-                        <div class="col-*">
-                            <label for="minimum_start_time">Earliest start time:</label>
-							<input type="text" class="form-control" name="minimum_start_time" id="minimum_start_time" placeholder="Target Time">
-                        </div>
-                        <div class="col-*">
-                            <label for="target_time">Target time to eat:</label>
-							<input type="text" class="form-control" name="target_time" id="target_time" placeholder="Minimum Start Time">
-                        </div>
-                    </div>
-                    <div class="row mx-auto justify-content-center">
-                        <h5><em><small class="text-muted">To create a schedule with just a start time, <br>enter desired start time as Earliest Start Time and leave Target Time blank.</small></em></h5>
-                    </div>
-                </div>
+				<div class="form-row mx-auto justify-content-center">
+                    <div class="row align-items-end justify-content-center">
+						<div class="col-6">
+							<label for="minimum_start_time">Earliest start time:</label>
+							<input type="text" class="form-control" name="minimum_start_time" id="minimum_start_time" placeholder=" ">
+						</div>
+						<div class="col-6">
+							<label for="target_time">Target time to eat:</label>
+							<input type="text" class="form-control" name="target_time" id="target_time" placeholder=" ">
+						</div>
+					</div>
+				</div><br>
+
+                <div class="form-row mx-auto justify-content-center">
+					<div class="col-*">
+						<h5><em><small class="text-muted">To create a schedule with just a start time, <br>enter desired start time as Earliest Start Time and leave Target Time blank.</small></em></h5>
+					</div>
+				</div><br>
+
                 <div class="row mx-auto justify-content-center">
-                    <div class="col-sm-auto mx-auto justify-content-center">
+                    <div class="col-4 mx-auto">
                         <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block" disabled>Submit</button>
                     </div>
-                </div>
+				</div>
             </div>
         </form><br>
     </div>
 	{% endblock %}
 
 	{% block scripts %}
+	<script src="/static/js/presets.js"></script>
+
     <script>
      function formChecking() {
          if (document.querySelector('#bread_kind').value === '' || document.querySelector('#minimum_start_time').value === '') {
@@ -128,6 +134,8 @@
 		 noCalendar: true,
 		 dateFormat: "H:i",
 	 });
+
 	</script>
+
 
 	{% endblock %}
