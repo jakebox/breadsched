@@ -51,14 +51,14 @@
 
                 <div class="form-row mx-auto justify-content-center">
                     <div class="row align-items-end justify-content-center">
-                        <div class="col-5">
+                        <div class="col-6">
                             <label for="cool_time">Cool time:</label>
                             <input name="cool_time" class="form-control" id="cool_time" type="tel" value=""><br>
                         </div>
 
                         <div class="col-6">
                             <label for="bread_kind">Bread name:</label>
-                            <input name="bread_kind" class="form-control" id="bread_kind" type="text" placeholder="Brioche" autocomplete="off" onKeyUp="formChecking()"><br>
+                            <input name="bread_kind" class="form-control" id="bread_kind" type="text" placeholder="" autocomplete="off"><br>
                         </div>
                     </div>
 				</div>
@@ -97,21 +97,13 @@
 
     <script>
      function formChecking() {
-         if (document.querySelector('#bread_kind').value === '' || document.querySelector('#minimum_start_time').value === '') {
+         if (document.querySelector('#minimum_start_time').value === '') {
              document.querySelector('#submit').disabled = true;
          }
          else {
              document.querySelector('#submit').disabled = false;
          }
      }
-
-     $("#minimum_start_time").blur(function(){
-         formChecking();
-     });
-
-     $("#bread_kind").blur(function(){
-         formChecking();
-     });
 
      function errorAlertCheck(){
          if ("{{error}}" === "time_error") {
@@ -128,13 +120,14 @@
 		 enableTime: true,
 		 noCalendar: true,
 		 dateFormat: "H:i",
+		 onChange: (function (){formChecking();}), // Check if the submit button should be enabled on a time change
 	 });
+
 	 $("#target_time").flatpickr({
 		 enableTime: true,
 		 noCalendar: true,
 		 dateFormat: "H:i",
 	 });
-
 	</script>
 
 

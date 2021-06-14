@@ -27,6 +27,7 @@ def index():
          else: times[key] = 0
       
       bread_kind = str(request.form.get("bread_kind"))
+      if bread_kind == "": bread_kind = "Unspecified bread"
 
       # Get the first rise range, if nonexistent set equal to 0
       first_rise_range = request.form.get("first_rise_range")
