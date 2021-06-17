@@ -7,6 +7,8 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+
+
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,18 +20,43 @@
              font-size: 100%;
          }
 
-         body {
-             font-family: 'Public Sans', sans-serif;
+         /* body {
+            font-family: 'Public Sans', sans-serif;
+            font-size: 110%;
+            padding-top: 4.5em;
+            text-align: center;
+            line-height: 170%;
+			color: #34321C;
+			background-color: #F7F7F0;
+			}
+		  */
+
+		 body {
+			 color: #34321C;
+			 font-family: "Avenir Next", "Avenir", sans-serif;
              font-size: 110%;
              padding-top: 4.5em;
              text-align: center;
-             line-height: 170%;
-         }
+             line-height: 130%;
+			 color: #34321C;
+			 background: #F7F7F0;
+		 }
 
+		 strong {
+			 font-weight: 600;
+		 }
+
+		 h1, h2, h3 {
+			 display: inline-block;
+		 }
 
          input {
              text-align: center;
          }
+
+		 label {
+			 font-weight: 500 !important;
+		 }
 
          .form-control {
              font-size: 1.1rem;
@@ -60,6 +87,24 @@
              position: absolute;
          }
 
+		 .navbar-color-mine {
+			 background-color: #F7F7F0;
+		 }
+
+		 .list-group-mine .list-group-item {
+			 background-color: #F7F7F0;
+		 }
+
+
+		 .disable-dbl-tap-zoom {
+			 touch-action: manipulation;
+		 }
+
+		 .nav-link {
+			 font-weight: 500;
+		 }
+
+
          {% block style %}
          {% endblock %}
         </style>
@@ -69,7 +114,7 @@
 
     <body {% block body_attrs %}{% endblock %}>
 
-        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top py-1">
+	<nav class="navbar navbar-expand-sm navbar-light navbar-color-mine fixed-top py-1">
             <a class="navbar-brand" href="/">&#x1F35E;&#x1F4C5;</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -81,12 +126,12 @@
                     <!-- <a class="nav-item nav-link" type="button" onclick="challahFill();">Challah</a>
 					-->
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link dropdown-toggle disable-dbl-tap-zoom" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Presets
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" type="button" onclick="clearFill();">Clear forms</a>
-							<a class="dropdown-item" type="button" onclick="challahFill();">Challah</a>
+							<a class="dropdown-item" onclick="clearFill();">Clear forms</a>
+							<a class="dropdown-item" onclick="challahFill();">Challah</a>
 							<a class="dropdown-item disabled" href="#">More bread in succes</a>
 						</div>
 					</li>
@@ -103,7 +148,6 @@
         </main>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </body>
