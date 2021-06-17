@@ -72,6 +72,11 @@ def info():
    if request.method == "GET":
       return render_template("info.html")
 
+@app.route("/help")
+def help():
+   if request.method == "GET":
+      return render_template("help.html")
+
 @app.route("/testing", methods=["GET", "POST"])
 def testing():
    if request.method == "GET":
