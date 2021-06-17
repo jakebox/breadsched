@@ -39,7 +39,7 @@
              text-align: center;
              line-height: 130%;
 			 color: #34321C;
-			 background: #F7F7F0;
+			 background: #FAF7E8;
 		 }
 
 		 strong {
@@ -60,6 +60,7 @@
 
          .form-control {
              font-size: 1.1rem;
+			 font-weight: 500 !important;
          }
 
          .jake-form-control {
@@ -88,12 +89,14 @@
          }
 
 		 .navbar-color-mine {
-			 background-color: #F7F7F0;
+			 background-color: #FAF7E8;
 		 }
 
 		 .list-group-mine .list-group-item {
-			 background-color: #F7F7F0;
+			 color: #34321C;
+			 background-color: #FAF7E8;
 		 }
+
 
 
 		 .disable-dbl-tap-zoom {
@@ -109,7 +112,6 @@
          {% endblock %}
         </style>
 
-        <title>Breadsched</title>
     </head>
 
     <body {% block body_attrs %}{% endblock %}>
@@ -123,8 +125,6 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="/info">Info</a>
-                    <!-- <a class="nav-item nav-link" type="button" onclick="challahFill();">Challah</a>
-					-->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle disable-dbl-tap-zoom" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Presets

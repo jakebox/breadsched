@@ -1,29 +1,32 @@
 {% extends "base.html" %}
 
 {% block body %}
+<title>BreadSched &mdash; Schedule</title>
 
 <main role="main" class="container">
 
     <h1 style="font-weight: 700;">{{ bread_object.bread_kind }} Sched</h1><br>
 
-    <h5>Here is your automagically generated &#x1F35E;&#x1F4C5;!</h5>
+    <h5>Here is your automagically generated &#x1F35E;&#x1F4C5;&nbsp!</h5><br>
 
 	<div class="row justify-content-center">
-		<div class="col-*">
+		<div class="col-12">
 			<p>
-
 				{% if target_time %}
-				To have your {{ bread_object.bread_kind.lower() }}  it ready by {{ bread_object.schedule.get('eat') }} like you wanted, <br>the latest you could start making your bread is {{ latest_possible_start }}.
+				To have your {{ bread_object.bread_kind.lower() }} <strong>ready by {{ bread_object.schedule.get('eat') }}</strong> like you wanted, the <strong>latest you could start baking is {{ latest_possible_start }}</strong>.<br>
 				{% endif %}
 
 				{% if not target_time %}
-				You said you wanted to <strong>begin making your {{  bread_object.bread_kind.lower()  }} at {{ latest_possible_start }}</strong>. In that case, you'll finish making your bread at <strong>{{ bread_object.schedule.get('eat') }}</strong>.<br>
+				You said you wanted to <strong>begin making your {{  bread_object.bread_kind.lower()  }} at {{ latest_possible_start }}</strong>. In that case, you'll finish making your bread at <strong>{{ bread_object.schedule.get('eat') }}</strong>.
 				{% endif %}
-			</p>
+			
 
-			<!-- <p>Start to finish, it will take a <strong>total time of {{ total_rise_hours }} hours and {{ total_rise_mins }} minutes</strong>, according to the information you input.</p> -->
-			<p>Total time: <strong>{{ total_rise_hours }} hours and {{ total_rise_mins }} minutes.</strong></p>
+			Total time: <strong>{{ total_rise_hours }} hours and {{ total_rise_mins }} minutes.</strong></p>
 
+
+		</div>
+		<div class="col-6">
+			<hr>
 		</div>
 	</div>
 
@@ -35,41 +38,41 @@
 				<div class="d-flex justify-content-center">
 					<h4 class="mb-2"><strong>Mixing</strong></h4>
 				</div>
-				<h5 class="mb-1">{{bread_object.schedule.get('mixing_time')}}</h5>
+				<h5 class="mb-2">{{bread_object.schedule.get('mixing_time')}}</h5>
 			</li>
 			<li class="list-group-item list-group-item-action flex-column align-items-start" style="border: none">
 				<div class="d-flex justify-content-center">
 					<h4 class="mb-2"><strong>First Rise</strong></h4>
 				</div>
-				<h5 class="mb-2">{{bread_object.schedule.get('rise0')}}&nbsp;-&nbsp;{{bread_object.schedule.get('action_time')}}</h5>
+				<h5 class="mb-2">{{bread_object.schedule.get('rise0')}}&nbsp;—&nbsp;{{bread_object.schedule.get('action_time')}}</h5>
 			</li>
 
 			<li class="list-group-item list-group-item-action flex-column align-items-start" style="border: none">
 				<div class="d-flex justify-content-center">
 					<h4 class="mb-2"><strong>Action</strong></h4>
 				</div>
-				<h5 class="mb-2">{{bread_object.schedule.get('action_time')}}&nbsp;-&nbsp;{{bread_object.schedule.get('rise1')}}</h5>
+				<h5 class="mb-2">{{bread_object.schedule.get('action_time')}}&nbsp;—&nbsp;{{bread_object.schedule.get('rise1')}}</h5>
 			</li>
 
 			<li class="list-group-item list-group-item-action flex-column align-items-start" style="border: none">
 				<div class="d-flex justify-content-center">
 					<h4 class="mb-2"><strong>Second Rise</strong></h4>
 				</div>
-				<h5 class="mb-2">{{bread_object.schedule.get('rise1')}}&nbsp;-&nbsp;{{bread_object.schedule.get('bake_time')}}</h5>
+				<h5 class="mb-2">{{bread_object.schedule.get('rise1')}}&nbsp;—&nbsp;{{bread_object.schedule.get('bake_time')}}</h5>
 			</li>
 
 			<li class="list-group-item list-group-item-action flex-column align-items-start" style="border: none">
 				<div class="d-flex justify-content-center">
 					<h4 class="mb-2"><strong>Bake</strong></h4>
 				</div>
-				<h5 class="mb-2">{{bread_object.schedule.get('bake_time')}}&nbsp;-&nbsp;{{bread_object.schedule.get('cool_time')}}</h5>
+				<h5 class="mb-2">{{bread_object.schedule.get('bake_time')}}&nbsp;—&nbsp;{{bread_object.schedule.get('cool_time')}}</h5>
 			</li>
 
 			<li class="list-group-item list-group-item-action flex-column align-items-start" style="border: none">
 				<div class="d-flex justify-content-center">
 					<h4 class="mb-2"><strong>Cool</strong></h4>
 				</div>
-				<h5 class="mb-2">{{bread_object.schedule.get('cool_time')}}&nbsp;-&nbsp;{{bread_object.schedule.get('eat')}}</h5>
+				<h5 class="mb-2">{{bread_object.schedule.get('cool_time')}}&nbsp;—&nbsp;{{bread_object.schedule.get('eat')}}</h5>
 			</li>
 
 			<li class="list-group-item list-group-item-action flex-column align-items-start" style="border: none">
