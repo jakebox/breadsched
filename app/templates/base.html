@@ -9,16 +9,12 @@
         {% block head %}
         {% endblock %}
 
-
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans" rel="stylesheet">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Public+Sans" rel="stylesheet">
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-HF2CBNGYDG"></script>
@@ -30,6 +26,7 @@
 		 gtag('config', 'G-HF2CBNGYDG');
 		</script>
 
+		<!-- CSS -->
         <style>
          html {
              height: 100vh;
@@ -50,9 +47,9 @@
 		 body {
 			 color: #34321C;
 			 font-family: "Avenir Next", "Avenir", sans-serif;
-             /* font-size: 110%; */
+             font-size: 110%;
+			 /* font-family: 'Karla', sans-serif; */
              padding-top: 4.5em;
-             /* text-align: center; */
              /* line-height: 130%; */
 			 margin: 0% auto 8% auto;
 			 color: #34321C;
@@ -61,7 +58,7 @@
 		 }
 
 		 strong {
-			 font-weight: 600;
+			 font-weight: 400;
 		 }
 
 		 h1, h2, h3 {
@@ -107,29 +104,18 @@
          .footer {
          }
 
-         .navbar {
-             position: absolute;
-         }
+         .navbar {position: absolute;}
 
-		 .navbar-color-mine {
-			 background-color: #F7F7F0;
-		 }
+		 .navbar-color-mine {background-color: #F7F7F0;}
 
 		 .list-group-mine .list-group-item {
 			 color: #34321C;
 			 background-color: #F7F7F0;
 		 }
 
+		 .disable-dbl-tap-zoom {touch-action: manipulation;}
 
-
-		 .disable-dbl-tap-zoom {
-			 touch-action: manipulation;
-		 }
-
-		 .nav-link {
-			 font-weight: 500;
-		 }
-
+		 .nav-link {font-weight: 500;}
 
          {% block style %}
          {% endblock %}
@@ -159,8 +145,6 @@
 							<a class="dropdown-item disabled" href="#">More bread in succes</a>
 						</div>
 					</li>
-
-
                 </div>
             </div>
         </nav>
