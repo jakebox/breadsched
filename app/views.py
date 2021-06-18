@@ -10,10 +10,16 @@ from app import app
 from calculations import *
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
    if request.method == "GET":
-      return render_template('index.html')
+      return render_template("index.html")
+
+
+@app.route("/calculator", methods=["GET", "POST"])
+def calculator():
+   if request.method == "GET":
+      return render_template('calculator.html')
    else:
 
       times = {"mixing_time": "0", "rise0": "0",
@@ -44,7 +50,7 @@ def index():
          bread.calculate_time()
       except ValueError: # display error message if necessary e.g. print str(e)
          print("Failed, error out.")
-         return render_template("index.html", error="time_error")
+         return render_template("calculator.html", error="time_error")
       else: # If there is no error
          if target_time != "": # Target time, so start as late as possible
             target_timeJ = True

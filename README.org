@@ -31,9 +31,11 @@ A website/app to help you time your bread correctly. Built using Python, JavaScr
 [[file:pictures/output_page.png]]
 
 * Todos/Plans
-+ UX/UI improvements
-  * Look perfect on both desktop and mobile
-  * Fix footer
 + Add preheat oven time
 + Better anti-failure (?)
-+ Save breads/times
+  * Output page when time is 0/None
+  * Breads crossing 12am
++ Long-term
+  * Save breads/times
+  * Logo
+  * SEO
