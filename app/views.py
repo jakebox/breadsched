@@ -41,8 +41,10 @@ def calculator():
       else: first_rise_range = int(first_rise_range)
 
       target_time = str(request.form.get("target_time"))
-      print(target_time)
       minimum_start_time = str(request.form.get("minimum_start_time"))
+      if (len(minimum_start_time) != 5): minimum_start_time = "0" + minimum_start_time # Add a leading zero to the time if needed
+      print(minimum_start_time)
+         
 
       bread = Bread(target_time, minimum_start_time, bread_kind, times, first_rise_range)
 

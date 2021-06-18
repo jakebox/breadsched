@@ -82,6 +82,7 @@ class Bread():
         latest_possible_start = timedelta()
         latest_possible_start = timedelta(hours=self.time_target_hours, minutes=self.time_target_minutes) - timedelta(hours=(self.total_rise_time / 60))
         dp = str(latest_possible_start)[:-3] # Return the time but without the seconds bit (so just HH:MM)
+        if (len(dp) != 5): dp = "0" + dp # Add a leading 0 to the time if needed
         return dp
 
 
@@ -103,6 +104,8 @@ class Bread():
             # time, which is the time the event should begin, then increment the counter by the amount of timedelta that was used.
             self.schedule[key] = twentyfour_to_twelve(str(current_time)[:-3])
             current_time += timedelta(minutes=time)
+            if key == 'bake_time':
+                self.bake_end = twentyfour_to_twelve(str(current_time)[:-3])
             if key == 'rise0':
                 self.rise0_end = twentyfour_to_twelve(str(current_time)[:-3])
             elif key == 'rise1':
@@ -119,12 +122,11 @@ def twentyfour_to_twelve(time):
 
 if __name__ == '__main__':
 
-    minimum_start_time = "10:00"
-    # target_time = "18:30"
-    target_time = ""
+    minimum_start_time = "09:00"
+    target_time = "16:00"
 
     times = {"mixing_time": 30, "rise0": 180,
-             "action_time": 15, "rise1": 60, "bake_time": 35,
+             "action_time": 15, "rise1": 90, "bake_time": 35,
              "cool_time": 15}
     
     bread = Bread(target_time, minimum_start_time, "Challah", times, 60)
@@ -138,6 +140,7 @@ if __name__ == '__main__':
 
         if target_time != "":
             latest_possible_start = bread.calc_lps()
+            print(latest_possible_start)
             # Could be done using any times - so if you don't have a target time but you do have a start time this could be used
             bread.calculate_schedule(latest_possible_start[0:2], latest_possible_start[3:5])
 
