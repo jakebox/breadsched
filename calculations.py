@@ -1,7 +1,7 @@
 ###
 ### Bread Class for BreadSched
 ### Handles bread details and computations
-### (c) 2021 J. Boxerman
+### (c) 2021 Jake B.
 ###
 
 from datetime import datetime, timedelta
